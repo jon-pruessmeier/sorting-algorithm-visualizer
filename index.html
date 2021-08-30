@@ -13,16 +13,31 @@
 
         <div id="headContent">
           <div id="header">
-            <h1>Sorting Algorithm Visualizer</h1>
+            <h1>Bubble Sort Visualizer</h1>
           </div>
-  
-          <div id="buttonDiv"}>
-            <button>Algo1</button>
-            <button>Algo2</button>
-            <button>Algo3</button>
-            <button>Algo4</button>
-            <button>Algo5</button>
-          </div>
+            <div id="inputWrapper">
+                <div id="input">
+                    <div>
+                        <label for="arraySize">Array-Size (5-50):</label>
+                        <input id="arraySize" type="number" name="arraySize" value="20" min="5" max="50" step="1">
+                    </div>
+
+                    <div>
+                        <label for="interval">Sorting-Speed (10 - 500ms per step):</label>
+                        <input id="interval" type="range" name="interval" value="200" min="10" max="500" step="10">
+                    </div>
+                </div>
+
+                <div id="buttonDiv">
+                    <button onclick="bubbleSort()"  id="bubble">Sort!</button>
+                    <!-- This section is reserved for the upcoming features!
+                            <button>Merge Sort</button>
+                            <button>Quick Sort</button>
+                    -->
+                </div>
+            </div>
+
+
   
         </div>
   
