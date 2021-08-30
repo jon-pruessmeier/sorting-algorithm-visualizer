@@ -151,10 +151,82 @@ class BubbleSort extends Algorithm{
     }
 }
 
+
+class MergeSort extends Algorithm{
+    constructor(length, interval) {
+        super(length, interval);
+
+        /*
+        This class contains a functioning merge-sort algorithm.
+        However, a possibility has to be established which saves the intermediate steps as arrays for the visualization...
+         */
+
+        this.merge = (leftArray, rightArray) => {
+            const sortedArray = [];
+            while (leftArray.length > 0 && rightArray.length > 0) {
+                if (leftArray[0] < rightArray[0]) {
+                    sortedArray.push(leftArray[0]);
+                    leftArray.shift();
+
+                } else {
+                    sortedArray.push(rightArray[0]);
+                    rightArray.shift();
+
+                }
+            }
+
+            let arr = sortedArray.concat(leftArray).concat(rightArray);
+            return arr;
+        }
+
+        this.mergeSort = (startArray) => {
+            const length = startArray.length;
+            if (length === 1) {
+                return startArray;
+            }
+
+            const mid = Math.floor(length / 2);
+            const leftArray = startArray.slice(0, mid);
+            const rightArray = startArray.slice(mid, length);
+
+
+            return this.merge(this.mergeSort(leftArray), this.mergeSort(rightArray))
+        }
+
+        this.algoArray = this.mergeSort(this.algoArray);
+
+    }
+
+}
+
 function refresh(){
     location.reload();
 }
 
+function mergeSort(){
+
+    /*
+    Does not run properly:
+    //clearing all potentially existent intervals:
+    clearInterval(this.intervalID);
+    */
+
+
+    //accessing the array-size:
+    const inputArraySize = document.getElementById("arraySize");
+    const arraySize = inputArraySize.value;
+
+    //accessing the ms-value for the interval
+    const inputInterval = document.getElementById("interval");
+    const interval = parseInt(inputInterval.value);
+
+    //starting the Mergesort:
+    let merge = new MergeSort(arraySize, interval);
+    merge.mergeSort(merge.algoArray);
+    merge.filLDivArray();
+    merge.visualize();
+
+}
 
 function bubbleSort(){
 
@@ -163,6 +235,8 @@ function bubbleSort(){
     //clearing all potentially existent intervals:
     clearInterval(this.intervalID);
     */
+
+
     let button = document.getElementById("bubble");
     button.setAttribute("onclick", "refresh()");
     button.textContent="Refresh";
